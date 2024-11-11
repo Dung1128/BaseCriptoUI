@@ -105,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E2EF1F22CE1E4EB00B60C4D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7E2632CDDF71A00B3C9BD /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		2EB7E20B2CDDA45F00B3C9BD = {
 			isa = PBXGroup;
 			children = (
@@ -189,7 +197,7 @@
 		2EB7E24E2CDDAD2300B3C9BD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2EB7E2502CDDAD2C00B3C9BD /* ViewModals */,
+				2E2EF1F22CE1E4EB00B60C4D /* ViewModels */,
 				2EB7E24F2CDDAD2700B3C9BD /* View */,
 			);
 			path = Home;
@@ -202,14 +210,6 @@
 				2E2EF1EC2CE1AFAE00B60C4D /* HomeView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		2EB7E2502CDDAD2C00B3C9BD /* ViewModals */ = {
-			isa = PBXGroup;
-			children = (
-				2EB7E2632CDDF71A00B3C9BD /* HomeViewModel.swift */,
-			);
-			path = ViewModals;
 			sourceTree = "<group>";
 		};
 		2EB7E2532CDDAE3400B3C9BD /* Components */ = {
