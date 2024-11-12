@@ -23,6 +23,7 @@ class HomeViewModel: ObservableObject {
     
     
     private let dataService = CoinDataService()
+    private let marketDataService = MarketDataService()
     private var cancellables  = Set<AnyCancellable>()
     
     
@@ -49,6 +50,14 @@ class HomeViewModel: ObservableObject {
                 self?.allCoins = returnedCoins
             }
             .store(in: &cancellables)
+        
+        //update market data
+        marketDataService.$marketData
+            .map(mapGlobalMarketData)
+            .sink{ [weak self] (returnedStats) in
+                self?.statistics = returnedStats
+            }
+            .store(in: &cancellables)
     }
     
     private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
@@ -64,6 +73,23 @@ class HomeViewModel: ObservableObject {
             coin.symbol.lowercased().contains(lowercasedText) ||
             coin.id.lowercased().contains(lowercasedText)
         }
+    }
+    
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+        var stats: [StatisticModel] = []
+        guard let data = marketDataModel else {
+            return stats
+        }
+        
+        let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentagetChange: data.marketCapChangePercentage24HUsd)
+        let volume = StatisticModel(title: "24h Volume", value: data.volume)
+        let btcDominance = StatisticModel(title: "BTC Dominance", value:"$0.00", percentagetChange: 0)
+        stats.append(contentsOf: [
+            marketCap,
+            volume,
+            btcDominance
+        ])
+        return stats
     }
     
 }
