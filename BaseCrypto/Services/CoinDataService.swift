@@ -16,9 +16,7 @@ class CoinDataService {
     var coinSubcription: AnyCancellable?
     
     init(){
-        
         getCoin()
-        
     }
     
     private func getCoin(){
